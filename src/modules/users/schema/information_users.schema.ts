@@ -1,8 +1,17 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
+import * as mongoose from 'mongoose';
 
+export type InformationUsers = HydratedDocument<InformationUsersEntity>;
 @Schema({ collection: 'information_users' })
-export class InformationUsersEntity extends Document {
+export class InformationUsersEntity {
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    default: new mongoose.Types.ObjectId(),
+  })
+  _id: mongoose.Types.ObjectId;
+
   @Prop()
   code: string;
 

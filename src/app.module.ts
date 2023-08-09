@@ -6,7 +6,8 @@ import { MulterModule } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
-import { UsersModule } from './modules/users/users.module';
+import { UsersModule } from '@modules/users/users.module';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UsersModule } from './modules/users/users.module';
       dest: './uploads',
     }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
