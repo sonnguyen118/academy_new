@@ -3,16 +3,11 @@ import { HydratedDocument } from 'mongoose';
 import { InformationUsersEntity } from './information_users.schema';
 import * as mongoose from 'mongoose'; // Import mongoose
 import { RoleConfigEntity } from '@modules/auth/schema/role.schema';
+
 export type Users = HydratedDocument<UsersEntity>;
 
 @Schema({ collection: 'users' })
 export class UsersEntity {
-  @Prop({
-    type: mongoose.Schema.Types.ObjectId,
-    default: new mongoose.Types.ObjectId(),
-  })
-  _id: mongoose.Types.ObjectId;
-
   @Prop()
   userName: string;
 

@@ -96,6 +96,7 @@ export class UsersService {
       };
       // Tạo mã mới và kiểm tra tính duy nhất
       const code = await generateCode();
+      console.log(code, 'code');
       // Tạo thông tin người dùng
       const information = dto.information;
       information.code = code;
@@ -122,7 +123,7 @@ export class UsersService {
         role: checkRole._id,
         isActive: true,
         isDelete: false,
-        isValidate: true,
+        isValidate: false,
       });
       const savedUser = await createdUser.save();
       // Gửi email tới student
