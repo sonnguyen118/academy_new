@@ -8,6 +8,8 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
 import { UsersModule } from '@modules/users/users.module';
 import { AuthModule } from '@modules/auth/auth.module';
+import { UploadsModule } from '@modules/uploads/uploads.module';
+import { CoursesModule } from './modules/courses/courses.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { AuthModule } from '@modules/auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    UploadsModule,
+    CoursesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

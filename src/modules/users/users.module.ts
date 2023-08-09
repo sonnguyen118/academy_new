@@ -11,8 +11,6 @@ import {
   RoleConfigEntity,
   RoleConfigSchema,
 } from '@modules/auth/schema/role.schema';
-import { Roles } from '@modules/auth/guard/roles.decorator';
-import { RolesGuard } from '@modules/auth/guard/roles.guard';
 import { AuthModule } from '@modules/auth/auth.module';
 @Module({
   imports: [

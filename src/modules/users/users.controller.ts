@@ -12,7 +12,10 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUsersDto } from './dto/create-users.dto';
-import { ChangePassWordUserDto } from './dto/update-users.dto';
+import {
+  ChangePassWordUserDto,
+  UpdateStudentDto,
+} from './dto/update-users.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { BadRequest } from '@exceptions/BadRequest';
 import config from '@config/index';
@@ -60,5 +63,37 @@ export class UsersController {
     } catch (err) {
       return new BadRequest(err.message);
     }
+  }
+
+  // lấy dữ liệu học viên danh sách
+  @Get('/list-student')
+  @HttpCode(200)
+  @UseGuards(RolesGuard)
+  @Roles(config.supper_admin)
+  async getAllUsers(
+    @Query('pageIndex', ParseIntPipe) pageIndex: number,
+    @Query('pageSize', ParseIntPipe) pageSize: number,
+  ): Promise<any> {
+    return this.usersService.getListStudents(pageIndex, pageSize);
+  }
+
+  // Xem chi tiết dữ liệu học viên
+  @Get('/:id') // Thay đổi đường dẫn tới /:id
+  @HttpCode(200)
+  @UseGuards(RolesGuard)
+  @Roles(config.supper_admin)
+  async getDetailStudent(@Param('id') id: string): Promise<any> {
+    return this.usersService.getDetailStudents(id);
+  }
+
+  @Put('/:id/update')
+  @HttpCode(201)
+  @UseGuards(RolesGuard)
+  @Roles(config.supper_admin)
+  async updateStudent(
+    @Body() updateStudentDto: UpdateStudentDto,
+    @Param('id') id: string,
+  ): Promise<any> {
+    return this.usersService.updateStudent(id, updateStudentDto);
   }
 }
